@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -39,6 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -49,9 +54,11 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -86,6 +93,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -98,12 +106,46 @@
             this.tabPage1.Text = "Configuration";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label5);
+            this.groupBox6.Controls.Add(this.label4);
+            this.groupBox6.Location = new System.Drawing.Point(17, 303);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(395, 166);
+            this.groupBox6.TabIndex = 3;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Connection Status";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(43, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(166, 26);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Auth Expires In:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Yellow;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(43, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(236, 26);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Not Connected to VMC";
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.listBox1);
-            this.groupBox5.Location = new System.Drawing.Point(7, 278);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox5.Location = new System.Drawing.Point(4, 742);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1234, 248);
+            this.groupBox5.Size = new System.Drawing.Size(1240, 176);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection Log";
@@ -116,7 +158,7 @@
             this.listBox1.HorizontalScrollbar = true;
             this.listBox1.Location = new System.Drawing.Point(3, 22);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(1228, 223);
+            this.listBox1.Size = new System.Drawing.Size(1234, 151);
             this.listBox1.TabIndex = 0;
             // 
             // groupBox3
@@ -125,9 +167,9 @@
             this.groupBox3.Controls.Add(this.comboBox1);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(7, 532);
+            this.groupBox3.Location = new System.Drawing.Point(683, 303);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(540, 278);
+            this.groupBox3.Size = new System.Drawing.Size(540, 177);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ORG and SDDC Selector";
@@ -174,6 +216,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabel3);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.linkLabel2);
             this.groupBox2.Controls.Add(this.checkBox2);
@@ -188,9 +231,20 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "VMC Authentication";
             // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(262, 113);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(143, 20);
+            this.linkLabel3.TabIndex = 7;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "Clear Saved Token";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(29, 187);
+            this.button1.Location = new System.Drawing.Point(19, 187);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 36);
             this.button1.TabIndex = 6;
@@ -201,44 +255,46 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.LinkColor = System.Drawing.Color.Maroon;
-            this.linkLabel2.Location = new System.Drawing.Point(264, 114);
+            this.linkLabel2.LinkColor = System.Drawing.Color.OrangeRed;
+            this.linkLabel2.Location = new System.Drawing.Point(514, 222);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(555, 20);
             this.linkLabel2.TabIndex = 5;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Saving API Token is a Security Risk. Click Here to understand how it is stored.";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(114, 113);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(142, 24);
+            this.checkBox2.Size = new System.Drawing.Size(124, 24);
             this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "Save API Token";
+            this.checkBox2.Text = "Save API Key";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(114, 143);
+            this.checkBox1.Location = new System.Drawing.Point(114, 148);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(155, 24);
+            this.checkBox1.Size = new System.Drawing.Size(137, 24);
             this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Reveal API Token";
+            this.checkBox1.Text = "Reveal API Key";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(858, 65);
+            this.linkLabel1.Location = new System.Drawing.Point(825, 65);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(186, 20);
+            this.linkLabel1.Size = new System.Drawing.Size(168, 20);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "How to get an API Token";
+            this.linkLabel1.Text = "How to get an API Key";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // label1
@@ -290,6 +346,11 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -304,6 +365,8 @@
             this.groupBox1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -333,11 +396,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
