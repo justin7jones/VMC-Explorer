@@ -30,7 +30,7 @@ namespace VMC_Explorer
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.automatevi.com");
+            System.Diagnostics.Process.Start("http://automatevi.com/blog/2019/09/13/generating-an-api-token-in-vmware-vmc/");
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -202,7 +202,8 @@ namespace VMC_Explorer
         {
             Global.AUTH_EXPIRE_TIMER--;
             label5.Text = "Auth Expires In: " + Global.AUTH_EXPIRE_TIMER.ToString() + "sec";
-            if (Global.AUTH_EXPIRE_TIMER >= 0) timer1.Enabled = false;
+            if (Global.AUTH_EXPIRE_TIMER <= 0) timer1.Enabled = false;
+
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -502,11 +503,30 @@ namespace VMC_Explorer
                 File.WriteAllText((target_filename_fullpath), authentication_RESPONSE.Content.ToString());
                 files_count++;
             }
-            // Backup Management Gateway Firewall Rules
+            // Backup Management Groups
 
-            if (checkBox6.Checked)
+            if (checkBox4.Checked)
             {
                 request_segment = "/policy/api/v1/infra/domains/mgw/groups";
+
+                authentication_REQUEST = new RestRequest(request_segment);
+                authentication_REQUEST.AddParameter("Authorization", "Bearer " + Global._AccessToken, ParameterType.HttpHeader);
+                listBox1.Items.Add("INVOKING REST COMMAND TO GET CGW Groups: " + client.BuildUri(authentication_REQUEST).ToString());
+
+                authentication_RESPONSE = client.Get(authentication_REQUEST);
+
+                target_directory = backup_path + "\\Groups";
+                target_filename_fullpath = target_directory + "\\Workload_Groups.json";
+                Directory.CreateDirectory(target_directory);
+
+                File.WriteAllText((target_filename_fullpath), authentication_RESPONSE.Content.ToString());
+                files_count++;
+            }
+
+            // Compute Gateway FW Rules backup
+            if (checkBox6.Checked)
+            {
+                request_segment = "/policy/api/v1/infra/domains/cgw/groups";
 
                 authentication_REQUEST = new RestRequest(request_segment);
                 authentication_REQUEST.AddParameter("Authorization", "Bearer " + Global._AccessToken, ParameterType.HttpHeader);
@@ -548,6 +568,11 @@ namespace VMC_Explorer
             richTextBox1.Text = pretty_json.ToString();
 
 
+
+        }
+
+        private void Button5_Click_1(object sender, EventArgs e)
+        {
 
         }
     } // end Class
