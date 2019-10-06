@@ -526,22 +526,39 @@ namespace VMC_Explorer
             // Compute Gateway FW Rules backup
             if (checkBox6.Checked)
             {
-                request_segment = "/policy/api/v1/infra/domains/cgw/groups";
+                request_segment = "/policy/api/v1/infra/domains/cgw/gateway-policies/default/rules";
 
                 authentication_REQUEST = new RestRequest(request_segment);
                 authentication_REQUEST.AddParameter("Authorization", "Bearer " + Global._AccessToken, ParameterType.HttpHeader);
-                listBox1.Items.Add("INVOKING REST COMMAND TO GET CGW Groups: " + client.BuildUri(authentication_REQUEST).ToString());
+                listBox1.Items.Add("INVOKING REST COMMAND TO GET CGW Rules: " + client.BuildUri(authentication_REQUEST).ToString());
 
                 authentication_RESPONSE = client.Get(authentication_REQUEST);
 
-                target_directory = backup_path + "\\Groups";
-                target_filename_fullpath = target_directory + "\\Workload_Groups.json";
+                target_directory = backup_path + "\\CGW";
+                target_filename_fullpath = target_directory + "\\cgw_rules.json";
                 Directory.CreateDirectory(target_directory);
 
                 File.WriteAllText((target_filename_fullpath), authentication_RESPONSE.Content.ToString());
                 files_count++;
             }
 
+            if (checkBox7.Checked)
+            {
+                request_segment = "/policy/api/v1/infra/domains/mgw/gateway-policies/default/rules";
+
+                authentication_REQUEST = new RestRequest(request_segment);
+                authentication_REQUEST.AddParameter("Authorization", "Bearer " + Global._AccessToken, ParameterType.HttpHeader);
+                listBox1.Items.Add("INVOKING REST COMMAND TO GET MGW Rules: " + client.BuildUri(authentication_REQUEST).ToString());
+
+                authentication_RESPONSE = client.Get(authentication_REQUEST);
+
+                target_directory = backup_path + "\\MGW";
+                target_filename_fullpath = target_directory + "\\mgw_rules.json";
+                Directory.CreateDirectory(target_directory);
+
+                File.WriteAllText((target_filename_fullpath), authentication_RESPONSE.Content.ToString());
+                files_count++;
+            }
 
             // Backups complete, invoke messagebox
 
